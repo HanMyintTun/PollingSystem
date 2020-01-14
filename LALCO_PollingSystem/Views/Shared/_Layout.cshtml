@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    @using LALCO_PollingSystem.Models
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container" style="display:flex;">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("LALCO Polling System", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Vote", "Index", "Question")</li>
+                    <li>@Html.ActionLink("Result", "Result", "Question")</li>
+                    <li>@Html.ActionLink("Create Question", "CreateQuestion", "Question")</li>
+                </ul>
+            </div>
+            <div style="margin:auto;margin-right:50px;">
+                @if (Session["LoggedInUser"] != null)
+                {
+                    var usr = Session["LoggedInUser"] as User;
+                    <span style="color:#c3c3c3;"><strong>@usr.FullName</strong></span>
+                }
+            </div>
+            <div style="margin:auto 0;justify-content:flex-end;">
+                @if (Session["LoggedInUser"] != null)
+                {
+                    <span>@Html.ActionLink("Logout", "Logout", "Home")</span>
+                }
+                else
+                {
+                    <span>@Html.ActionLink("Login", "Login", "Home")</span>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

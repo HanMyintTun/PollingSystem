@@ -1,0 +1,43 @@
+﻿@using LALCO_PollingSystem.Models
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h2><strong>LALCO Holdings Polling System</strong></h2>
+    <div>
+        @if (Session["LoggedInUser"] != null)
+        {
+            var usr = Session["LoggedInUser"] as User;
+            <p><strong>Welcome @usr.FullName</strong></p>
+        }
+        else
+        {
+            <p>Please @Html.ActionLink("Login", "Login", "Home", null) to the system or  @Html.ActionLink("Register", "Register", "Home", null).</p>
+        }
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Create Questions</h2>
+        <p>
+            This page is to create the questions.
+        </p>
+        @Html.ActionLink("Learn more >>", "CreateQuestion", "Question", null, htmlAttributes: new { @class = "btn btn-default" })
+
+
+    </div>
+    <div class="col-md-4">
+        <h2>Vote</h2>
+        <p>This page is to vote.</p>
+        @Html.ActionLink("Learn more >>", "Index", "Question", null, htmlAttributes: new { @class = "btn btn-default" })
+    </div>
+    <div class="col-md-4">
+        <h2>Results</h2>
+        <p>This page is to view the overall polling results.</p>
+        @Html.ActionLink("Learn more >>", "Result", "Question", null, htmlAttributes: new { @class = "btn btn-default" })
+    </div>
+</div>

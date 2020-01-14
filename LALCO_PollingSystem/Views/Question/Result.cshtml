@@ -1,0 +1,41 @@
+﻿@model LALCO_PollingSystem.Models.VM.ResultVM
+
+@{
+    ViewBag.Title = "Result";
+}
+
+<h2>Result</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal"></dl>
+</div>
+<p>
+    @foreach (var item in Model.ResultList)
+    {
+    <p>@item.QuestionDesc</p>
+        var ans = item.AnswerList.Count();
+        <table class="table table-bordered tbl-result">
+            <tr>
+                @for (int i = 0; i < ans; i++)
+                {
+
+                    <th>@item.AnswerList[i].AnswerDesc</th>
+                }
+            </tr>
+            <tr>
+                @for (int i = 0; i < ans; i++)
+                {
+
+                    <td>@item.AnswerList[i].Count</td>
+
+                }
+            </tr>
+
+
+        </table>
+
+    }
+    <p>
+        @Html.ActionLink("Back to Vote", "Index")
+    </p>
